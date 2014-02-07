@@ -1,6 +1,6 @@
 -- load in the "field2D" library module (from /modules/field2D.lua):
 local field2D = require "field2D"
-win = Window("forest fire", 512, 512))
+win = Window("forest fire", 512, 512)
 
 -- choose the size of the field
 local dimx = win.width/2
@@ -87,6 +87,7 @@ function forest_fire(x, y)
 		elseif math.random() < lightning_probability then		
 			-- otherwise, there's a small chance of catching fire due to atmostpheric conditions:
 			C = burning
+			print("burn")
 		end
 	elseif C == burning then
 		-- a burning tree cell becomes an empty cell

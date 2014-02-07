@@ -119,6 +119,8 @@ ffi.cdef[[
 		long int tv_usec;
 	};
 	int gettimeofday(struct timeval *restrict tp, void *restrict tzp);
+
+	int fflush (void *stream);
 ]]
 if ffi.os == "Windows" then
 	function av.sleep(s)
@@ -163,6 +165,9 @@ function av.step()
 			_G.update = nil
 		end
 	end
+
+	-- flush buffers
+	ffi.C.fflush(nil)
 	
 	-- and repeat
 	return true
