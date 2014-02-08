@@ -1,6 +1,6 @@
 local draw2D = require "draw2D"
 local vec2 = require "vec2"
-win = Window()
+
 
 -- create a few possible transformations:
 -- (each one is a translate, rotate, scale sequence)

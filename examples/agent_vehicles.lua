@@ -1,5 +1,4 @@
 local g = require "draw2D"
-win = Window()
 
 local lightx = 0.5
 local lighty = 0.45
@@ -103,7 +102,9 @@ end
 
 
 function draw()
+	
 	vehicle:draw()
+	
 	
 	g.push()
 	g.color(1, 1, 0)
@@ -114,7 +115,7 @@ end
 
 function mouse(event, btn, x, y)
 	if event == "down" or event == "drag" then
-		lightx = x / win.width
-		lighty = y / win.height
+		lightx = x
+		lighty = y
 	end
 end

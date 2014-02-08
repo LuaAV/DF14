@@ -1,7 +1,6 @@
 local draw2D = require "draw2D"
 local gl = require "gl"
 local vec2 = require "vec2"
-local win = Window()
 
 -- make each run different:
 math.randomseed(os.time())
@@ -47,7 +46,7 @@ for i = 1, numboids do
 	boids[#boids+1] = b
 end
 
-function update(dt)	
+function update()	
 
 	-- apply movement in a separate step 
 	-- (to avoid artifacts from sequential order updates)
@@ -150,8 +149,8 @@ local showinfluences = true
 local showview = true
 
 function draw()	
-	draw2D.blend()
 	draw2D.color(0, 0.3, 0)
+	
 	
 	-- draw lines between boids and the neighbors they can see:
 	if showneighbors then
@@ -204,14 +203,12 @@ function draw()
 	end	
 end
 
-function key(e, k)
-	if e == "down" then
-		if k == "i" then
-			showinfluences = not showinfluences
-		elseif k == "n" then
-			showneighbors = not showneighbors
-		elseif k == "v" then
-			showview = not showview
-		end
+function keydown(k)
+	if k == "i" then
+		showinfluences = not showinfluences
+	elseif k == "n" then
+		showneighbors = not showneighbors
+	elseif k == "v" then
+		showview = not showview
 	end
 end

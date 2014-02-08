@@ -4,7 +4,7 @@ local draw2D = require "draw2D"
 
 math.randomseed(os.time())
 
-win = Window(nil, 400, 400)
+win:setdim(400, 400)
 
 -- number of genes in a genome:
 local genome_size = 8
@@ -143,7 +143,7 @@ end
 
 local frame = 0
 
-function update(dt)
+function update()
 	frame = frame + 1
 	
 	if frame >= generation_length then
@@ -213,7 +213,7 @@ function draw()
 	end
 end
 
-function key(e, k)
+function keydown(k)
 	if k == "r" then
 		regenerate()
 	end

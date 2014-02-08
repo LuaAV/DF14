@@ -1,10 +1,9 @@
 -- load in the "field2D" library module (from /modules/field2D.lua):
 local field2D = require "field2D"
-win = Window("CA block rules", 512, 512)
 
 -- choose the size of the field
-local dimx = win.width/2
-local dimy = win.height/2
+local dimx = 256
+local dimy = dimx * 3/4 -- (with a 4:3 aspect ratio)
 
 -- allocate the field
 local field = field2D.new(dimx, dimy)
@@ -593,7 +592,7 @@ function draw()
 	field:draw()
 end
 
-function key(e, key)
+function keydown(key)
 	if key == "c" then
 		field:set(clear)
 	elseif key == "r" then
@@ -603,7 +602,7 @@ end
 
 function mouse(e, b, x, y)
 	if e == "down" or e == "drag" then
-		field:set(1, x / win.width * field.width, y / win.height * field.height)
+		field:set(1, x * field.width, y * field.height)
 	end
 end
 

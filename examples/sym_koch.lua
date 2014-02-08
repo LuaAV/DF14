@@ -1,7 +1,6 @@
 local draw2D = require "draw2D"
 local vec2 = require "vec2"
 
-win = Window()
 
 -- start pattern:
 local str = "F"
@@ -84,8 +83,6 @@ function draw()
 end
 
 
-function key(e, k)
-	if e == "down" then
-		str = apply_production_rules(str)
-	end
+function keydown(k)
+	str = apply_production_rules(str)
 end

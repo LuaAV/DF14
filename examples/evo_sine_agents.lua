@@ -1,4 +1,3 @@
-win = Window()
 
 -- create a population:
 -- count is population size
@@ -88,6 +87,7 @@ end
 --------------------------------------------------------------------------------
 local vec2 = require "vec2"
 local draw2D = require "draw2D"
+win:setdim(400, 400)
 
 local goal = vec2(0.75, 0.75)
 

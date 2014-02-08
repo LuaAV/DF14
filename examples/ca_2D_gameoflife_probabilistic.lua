@@ -1,6 +1,5 @@
 -- load in the "field2D" library module (from /modules/field2D.lua):
 local field2D = require "field2D"
-win = Window("Game of Life", 512, 512)
 
 local bit = require "bit"
 local band, bor, bxor = bit.band, bit.bor, bit.bxor
@@ -101,8 +100,8 @@ function mouse(event, btn, x, y)
 	if event == "down" or event == "drag" then
 		
 		-- scale window coords (0..1) up to the size of the field:
-		local x = x / win.width * field.width
-		local y = y / win.height * field.height
+		local x = x * field.width
+		local y = y * field.height
 	
 		-- spread the updates over a wide area:
 		for i = 1, 10 do

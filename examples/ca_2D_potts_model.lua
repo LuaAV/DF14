@@ -2,8 +2,6 @@ local field2D = require "field2D"
 local random = math.random
 local exp = math.exp
 
-local win = Window("Potts Model")
-
 --[[
 
 Each site (cell) can belong to a particular cell-class, with a unique ID.
@@ -20,7 +18,7 @@ where deltaH is the change in energy if the copying were to occur.
 --]]
 
 local dimx = 300
-local dimy = dimx * win.height / win.width
+local dimy = dimx * 3/4 -- (with a 4:3 aspect ratio)
 
 -- at higher temperatures, the cells are more likely to change *against* the entropy gradient
 -- at lower temperatures the world is more stable
@@ -115,7 +113,7 @@ function draw()
 end
 
 -- handle keypress events:
-function key(e, k)
+function keydown(k)
 	if k == "r" then
 		initialize()
 	elseif k == "c" then
@@ -127,6 +125,6 @@ end
 function mouse(event, btn, x, y)
 	-- clicking & dragging should draw trees into the IDs:
 	if event == "down" or event == "drag" then
-		IDs:set(0, x / win.width * IDs.width, y / win.height * IDs.height)
+		IDs:set(0, x * IDs.width, y * IDs.height)
 	end
 end

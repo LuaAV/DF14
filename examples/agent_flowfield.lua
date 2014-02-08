@@ -1,8 +1,9 @@
 local field2D = require "field2D"
 local draw2D = require "draw2D"
+local win = require "window"
 local vec2 = require "vec2"
 
-win = Window("flowfield", 600, 600)
+win:setdim(600, 600)
 math.randomseed(os.time())
 
 local dimx = 128

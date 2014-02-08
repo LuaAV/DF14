@@ -1,8 +1,6 @@
 local field2D = require "field2D"
 local draw2D = require "draw2D"
 
-win = Window("termites", 512, 512)
-
 math.randomseed(os.time())
 
 local dimx = 200

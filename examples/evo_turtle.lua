@@ -1,9 +1,10 @@
 local draw2D = require "draw2D"
 local vec2 = require "vec2"
+local util = require "util"
 
 math.randomseed(os.time())
 
-win = Window(nil, 800, 400)
+win:setdim(800, 400)
 
 -- alphabet:
 -- F: forward drawing a line
@@ -103,7 +104,7 @@ end
 local selected = nil
 
 function mouse(e, b, x, y)
-	local choice = math.ceil(x/win.width * #pop)
+	local choice = math.ceil(x*#pop)
 	selected = pop[choice]
 	if selected then
 		if e == "down" then
@@ -156,7 +157,7 @@ function regenerate()
 	pop = newpop
 end
 
-function key(e, k)
+function keydown(k)
 	if k == "r" then
 		reset()
 	else

@@ -1,10 +1,9 @@
 -- load in the "field2D" library module (from /modules/field2D.lua):
 local field2D = require "field2D"
-win = Window("forest fire", 512, 512)
 
 -- choose the size of the field
-local dimx = win.width/2
-local dimy = win.height/2
+local dimx = 256
+local dimy = dimx * 3/4 -- (with a 4:3 aspect ratio)
 
 -- allocate the field
 local field = field2D.new(dimx, dimy)
@@ -87,7 +86,6 @@ function forest_fire(x, y)
 		elseif math.random() < lightning_probability then		
 			-- otherwise, there's a small chance of catching fire due to atmostpheric conditions:
 			C = burning
-			print("burn")
 		end
 	elseif C == burning then
 		-- a burning tree cell becomes an empty cell
@@ -109,7 +107,7 @@ function update(dt)
 end
 
 -- handle keypress events:
-function key(e, k)
+function keydown(k)
 	if k == "r" then
 		-- apply the coin rule to all cells of the field (randomizes)
 		field:set(initialize)
@@ -120,6 +118,6 @@ end
 function mouse(event, btn, x, y)
 	-- clicking & dragging should draw trees into the field:
 	if event == "down" or event == "drag" then
-		field:set(tree, x / win.width * field.width, y / win.height * field.height)
+		field:set(tree, x * field.width, y * field.height)
 	end
 end

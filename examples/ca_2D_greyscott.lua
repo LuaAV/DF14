@@ -24,7 +24,6 @@ The F(1-u) is a replenishment term to maintain a steady concentration of U; and 
 --]]
 
 local field2D = require "field2D"
-win = Window("greyscott", 512, 256)
 
 math.randomseed(os.time())
 local floor = math.floor
@@ -133,7 +132,8 @@ end
 
 reset_squares()
 
-function update(dt)
+local frame = 1
+function update()
 	
 	for i = 1, steps do
 	
@@ -198,7 +198,8 @@ function update(dt)
 		end
 	end	
 	
-	if win.frame % 30 == 0 then 
+	frame = frame + 1
+	if frame % 30 == 0 then 
 		print("fps", floor(1/dt)) 
 		print(string.format("k = %f, f = %f", k, f))
 	end
@@ -214,7 +215,7 @@ function draw()
 	end
 end
 
-function key(e, k)
+function keydown(k)
 	if k == "u" then
 		drawmode = "u"
 	elseif k == "v" then
@@ -255,13 +256,13 @@ function key(e, k)
 	
 	elseif k == "s" then
 		spatialized = not spatialized
+	else
+		print("unhandled key:", k, type(k))
 	end
 end
 
 local mx, my
 function mouse(event, btn, x, y)
-	x = x / win.width
-	y = y / win.height
 	if event == "down" then
 		mx, my = x, y
 	elseif event == "drag" then

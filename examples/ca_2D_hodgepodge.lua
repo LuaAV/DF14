@@ -9,15 +9,14 @@
 -- the crucial parameter to vary these behaviors is sickness_rate
 
 local field2D = require "field2D"
-win = Window("hodgepodge", 512, 512)
 
 math.randomseed(os.time())
 local floor = math.floor
 local min = math.min
 
 -- choose the size of the field
-local dimx = win.width
-local dimy = win.height
+local dimx = 400
+local dimy = dimx * 3/4 -- (with a 4:3 aspect ratio)
 
 -- allocate the field
 local field = field2D.new(dimx, dimy)
@@ -123,7 +122,7 @@ function update(dt)
 end
 
 -- handle keypress events:
-function key(e, k)
+function keydown(k)
 	if k == "r" then
 		-- apply the coin rule to all cells of the field (randomizes)
 		field:set(initialize)
@@ -136,6 +135,6 @@ end
 function mouse(event, btn, x, y)
 	-- clicking & dragging should draw trees into the field:
 	if event == "down" or event == "drag" then
-		field:set(math.random(), x / win.width * field.width, y / win.height * field.height)
+		field:set(math.random(), x * field.width, y * field.height)
 	end
 end

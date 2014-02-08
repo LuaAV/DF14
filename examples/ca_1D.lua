@@ -1,8 +1,18 @@
+--[[
+
+Graham Wakefield
+March 2013
+My awesome work
+
+
+
+--]]
+
+
 local field2D = require "field2D"
-win = Window("CA rule 30", 512, 512))
 
 -- allocate a 2D array:
-local field = field2D.new(256, 256)
+local field = field2D.new(256, 192)
 
 -- render it continually:
 function draw()
@@ -86,6 +96,6 @@ function update()
 end
 
 -- reset:
-function key(e, key)
+function keydown(key)
 	reset()
 end

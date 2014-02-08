@@ -1,8 +1,9 @@
 local field2D = require "field2D"
 local draw2D = require "draw2D"
+local win = require "window"
 local vec2 = require "vec2"
 
-win = Window("flowdir", 500, 500)
+win:setdim(500, 500)
 --math.randomseed(os.time())
 
 
@@ -69,6 +70,7 @@ function draw()
 end	
 
 function key(e, k)
+	print(e, k)
 	if k == "r" then
 		reset_agents()
 	end

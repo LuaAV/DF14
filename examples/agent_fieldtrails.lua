@@ -2,7 +2,6 @@ local draw2D = require "draw2D"
 local field2D = require "field2D"
 local gl = require "gl"
 local vec2 = require "vec2"
-win = Window("fieldtrails", 512, 512)
 
 -- make each run different:
 math.randomseed(os.time())

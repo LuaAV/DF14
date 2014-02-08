@@ -1,10 +1,9 @@
 -- load in the "field2D" library module (from /modules/field2D.lua):
 local field2D = require "field2D"
-win = Window("Game of Life", 512, 512)
 
 -- choose the size of the field
-local dimx = win.width/2
-local dimy = win.height/2
+local dimx = 128
+local dimy = dimx * 3/4 -- (with a 4:3 aspect ratio)
 
 -- allocate the field
 local field = field2D.new(dimx, dimy)
@@ -82,7 +81,7 @@ function update(dt)
 end
 
 -- handle keypress events:
-function key(e, k)
+function keydown(k)
 	if k == "c" then
 		-- set all cells to zero:
 		field:clear()
@@ -99,8 +98,8 @@ function mouse(event, btn, x, y)
 	if event == "down" or event == "drag" then
 		
 		-- scale window coords (0..1) up to the size of the field:
-		local x = x / win.width * field.width
-		local y = y / win.height * field.height
+		local x = x * field.width
+		local y = y * field.height
 	
 		-- spread the updates over a wide area:
 		for i = 1, 10 do

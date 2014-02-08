@@ -1,11 +1,9 @@
 -- load in the "field2D" library module (from /modules/field2D.lua):
 local field2D = require "field2D"
 
-local win = Window("Langton's Ant")
-
 -- choose the size of the field
-local dimx = win.width
-local dimy = win.height
+local dimx = 512
+local dimy = dimx * 3/4 -- (with a 4:3 aspect ratio)
 
 -- allocate the field
 local field = field2D.new(dimx, dimy)
@@ -58,7 +56,7 @@ function update(dt)
 end
 
 -- handle keypress events:
-function key(e, k)
+function keydown(k)
 	if k == "r" then
 		-- apply the coin rule to all cells of the field (randomizes)
 		field:set(1)
@@ -69,6 +67,6 @@ end
 function mouse(event, btn, x, y)
 	-- clicking & dragging should draw trees into the field:
 	if event == "down" or event == "drag" then
-		field:set(0, x / win.width * field.width, y / win.height * field.height)
+		field:set(0, x * field.width, y * field.height)
 	end
 end

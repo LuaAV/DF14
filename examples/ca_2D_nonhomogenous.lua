@@ -1,10 +1,9 @@
 -- load in the "field2D" library module (from /modules/field2D.lua):
 local field2D = require "field2D"
-win = Window("non-homogeneous CA", 512, 512)
 
 -- choose the size of the field
 local dimx = 128
-local dimy = dimx
+local dimy = dimx * 3/4 -- (with a 4:3 aspect ratio)
 
 -- allocate the field
 local field = field2D.new(dimx, dimy)
@@ -94,7 +93,7 @@ function update(dt)
 end
 
 -- handle keypress events:
-function key(e, k)
+function keydown(k)
 	if k == "c" then
 		-- set all cells to zero:
 		field:clear()
@@ -107,8 +106,6 @@ end
 
 -- handle mouse events:
 function mouse(event, btn, x, y)
-	x = x / win.width
-	y = y / win.height
 	-- clicking & dragging should draw values into the field:
 	if event == "down" or event == "drag" then
 		

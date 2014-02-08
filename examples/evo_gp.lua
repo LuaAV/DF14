@@ -1,5 +1,5 @@
+local util = require "util"
 local field2D = require "field2D"
-win = Window("GP")
 local dimx, dimy = 200, 150
 local image = field2D(dimx, dimy)
 
@@ -116,9 +116,9 @@ function render(x, y)
 	return eval(t, x/dimx, y/dimy) % 1
 end
 
-function key(e, k)
+function keydown(k)
 	t = tree(6)
-	--print(util.table_tostring(t))
+	print(util.table_tostring(t))
 	image:set(render)
 end
 

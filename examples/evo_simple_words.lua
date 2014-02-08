@@ -1,6 +1,6 @@
 math.randomseed(os.time())
 -- the task: generate a particular string:
-local target = "colorless green ideas sleep furiously"
+local target = "graduate school of culture technology"
 -- the phenotypic materials: a string of N genes
 local genome_size = #target
 
@@ -137,13 +137,13 @@ function regenerate()
 	generation = generation + 1
 end
 
-function key(k)
+function keydown(k)
 	if k == "r" then
 		-- reset:
 		initialize()
 	end
 end
 
-function update(dt)
+function update()
 	regenerate()
 end

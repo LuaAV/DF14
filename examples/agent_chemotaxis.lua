@@ -2,7 +2,6 @@ local draw2D = require "draw2D"
 local field2D = require "field2D"
 local gl = require "gl"
 local vec2 = require "vec2"
-win = Window("chemotaxis", 512, 512)
 
 -- make each run different:
 math.randomseed(os.time())
@@ -91,7 +90,6 @@ end
 	
 function draw()
 	-- draw field in background:
-	draw2D.color(1, 1, 1)
 	sugar:draw()
 	-- then draw agents:
 	for i, a in ipairs(agents) do
@@ -111,12 +109,10 @@ function draw()
 	end
 end
 
-function key(e, k)
-	if e == "down" then
-		if k == "a" then
-			reset_agents()
-		elseif k == "s" then
-			reset_sugar()
-		end
+function keydown(k)
+	if k == "a" then
+		reset_agents()
+	elseif k == "s" then
+		reset_sugar()
 	end
 end

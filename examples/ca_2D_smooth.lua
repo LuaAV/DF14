@@ -15,7 +15,6 @@ TODO: continous time by interpreting transition as a rate of change
 --]]
 
 local field2D = require "field2D"
-win = Window("Smooth Life")
 
 math.randomseed(os.time())
 local floor = math.floor
@@ -286,7 +285,7 @@ function draw()
 end
 
 -- handle keypress events:
-function key(e, k)
+function keydown(k)
 	if k == "r" then
 		-- apply the coin rule to all cells of the field (randomizes)
 		field:set(initialize)
@@ -296,5 +295,13 @@ function key(e, k)
 		field:set(function(x, y)
 			return 0.5 + 0.5 * transition(x / field.width, y / field.height)
 		end)
+	end
+end
+
+-- handle mouse events:
+function mouse(event, btn, x, y)
+	-- clicking & dragging should draw trees into the field:
+	if event == "down" or event == "drag" then
+		field:set(math.random(), x * field.width, y * field.height)
 	end
 end
